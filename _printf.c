@@ -1,47 +1,58 @@
 #include "main.h"
-
 /**
- * _printf - has similar characteristics with printf
- * @format: the string
- * Return: length of string
+ * str_print - it format string
+ * @str:pointer
+ *Return: number of characters
  */
 
-int _printf(const char *format, ...)
+int str_print(char *str)
+{
+	int i = 0;
+
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i);
+}
+
+/**
+ * _printf - it prints as printf.
+ * @format: list of types of arguments
+ * @...:arguments
+ *Return:length
+ */
+
+int _printf(const char * const format, ...)
 {
 	va_list list;
-	unsigned int i;
+	unsigned int i = 0;
 	int counter = 0;
 	char *str;
 
 	if (format == NULL)
-	{
 		return (-1);
-	}
+
 	va_start(list, format);
-	for (i = 0; format[i] != '\0'; i++)
+	while (format[i])
 	{
-		if (format[i] == '%')
+		switch (format[i])
 		{
-			i += 1;
-			switch (format[i])
-			{
 			case 'c':
 				_putchar(va_arg(list, int));
-				counter += 1;
+				counter = 1;
 				break;
 			case 's':
 				str = va_arg(list, char *);
-				str_print(str, &counter);
+				counter = str_print(str);
 				break;
-			case 'd':
+			case '%':
+				_putchar('%');
+				counter = 1;
 				break;
-			}
 		}
-		else
-		{
-			_putchar(format[i]);
-			counter += 1;
-		}
+	i++;
 	}
 	va_end(list);
 	return (counter);
