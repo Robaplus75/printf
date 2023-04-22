@@ -9,7 +9,8 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	unsigned int i, counter = 0;
+	unsigned int i;
+	int counter = 0;
 	char *str;
 
 	if (format == NULL)
