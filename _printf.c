@@ -33,6 +33,9 @@ int _printf(const char *format, ...)
 				str = va_arg(list, char *);
 				str_print(str, &counter);
 				break;
+			case 'd':
+				num_print(va_arg(list, int));
+				break;
 			}
 		}
 		else
