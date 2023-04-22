@@ -8,6 +8,5 @@
 int _printf(const char *format, ...);
 int _putchar(char c);
 void str_print(char *str, int *count);
-void num_print(int num);
-
+void num_print(unsigned int num, int *pCount);
 #endif
