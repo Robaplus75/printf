@@ -87,6 +87,9 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 		case 'd':
 			(*counter) += num_print(va_arg(list, int));
 			break;
+		case 'i':
+			(*counter) += num_print(va_arg(list, int));
+			break;
 	}
 }
 
