@@ -35,22 +35,31 @@ int _printf(const char * const format, ...)
 		return (-1);
 
 	va_start(list, format);
-	while (format[i])
+	while (format[i] != '\0')
 	{
-		switch (format[i])
+		if (format[i] == '%')
 		{
+		i++;
+			switch (format[i])
+			{
 			case 'c':
 				_putchar(va_arg(list, int));
-				counter = 1;
+				counter++;
 				break;
 			case 's':
 				str = va_arg(list, char *);
-				counter = str_print(str);
+				counter += str_print(str);
 				break;
 			case '%':
 				_putchar('%');
-				counter = 1;
+				counter++;
 				break;
+			}
+		}
+		else
+		{
+			_putchar(format[i]);
+			counter++;
 		}
 	i++;
 	}
