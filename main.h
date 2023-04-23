@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 int _printf(const char *format, ...);
-int _putchar(char c)
+int _putchar(char c);
 void num_print(unsigned int num, int *pCount);
 
 #endif
