@@ -58,7 +58,30 @@ int str_print(char *str)
 }
 
 /**
- * type_handler - it handles the datatype
+ * to_binary - converts number to binary and also prints
+ * @num: number to be converted
+ * Return: number of characters printed
+ */
+
+int to_binary(int num)
+{
+	int digit[10], i, counter = 0;
+
+	for (i = 0; num > 0; i++)
+	{
+		digit[i] = num % 2;
+		num = num / 2;
+	}
+	for (i = i - 1; i >= 0; i--)
+	{
+		num_print(digit[i]);
+		counter ++;
+	}
+	return (counter);
+}
+
+/**
+ * type_handler - it prints the appropirate datatype
  * @i: index of the format or the given string
  * @counter: counts the number of strings printed
  * @format: the given string
@@ -89,6 +112,9 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 			break;
 		case 'i':
 			(*counter) += num_print(va_arg(list, int));
+			break;
+		case 'b':
+			(*counter) += to_binary(va_arg(list, int));
 			break;
 	}
 }
