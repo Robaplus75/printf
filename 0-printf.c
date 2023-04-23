@@ -75,7 +75,7 @@ int to_binary(int num)
 	for (i = i - 1; i >= 0; i--)
 	{
 		num_print(digit[i]);
-		counter ++;
+		counter++;
 	}
 	return (counter);
 }
