@@ -39,23 +39,6 @@ int num_print(int num)
 	return (counter);
 }
 
-/**
- * str_print - it format string
- * @str:pointer
- *Return: number of characters
- */
-
-int str_print(char *str)
-{
-	int i = 0;
-
-	while (str[i])
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	return (i);
-}
 
 /**
  * to_binary - converts number to binary and also prints
@@ -116,6 +99,10 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 		case 'b':
 			(*counter) += to_binary(va_arg(list, int));
 			break;
+		default:
+			_putchar(format[i]);
+			(*counter)++;
+			break;
 	}
 }
 
@@ -131,15 +118,19 @@ int _printf(const char * const format, ...)
 	va_list list;
 	int i = 0, counter = 0;
 
-	if (format == NULL)
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(list, format);
+
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			i++;
+			if (format[i] == '\0')
+				return (-1);
 			type_handler(i, &counter, format, list);
 		}
 		else
@@ -152,4 +143,3 @@ int _printf(const char * const format, ...)
 	va_end(list);
 	return (counter);
 }
-
