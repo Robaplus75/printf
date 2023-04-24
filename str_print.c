@@ -20,5 +20,3 @@ int str_print(char *str)
 	}
 	return (i);
 }
-
-
