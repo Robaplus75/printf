@@ -37,6 +37,10 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 			str = va_arg(list, char *);
 			(*counter) += to_reverse(str);
 			break;
+		case 'R':
+			str = va_arg(list, char *);
+			(*counter) += to_Rot13(str);
+			break;
 		default:
 			_putchar(format[i]);
 			(*counter)++;
